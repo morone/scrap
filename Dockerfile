@@ -1,7 +1,10 @@
-FROM ubuntu:latest
+FROM python:3
 
-RUN apt-get update
-RUN apt-get install apt-utils
-RUN apt-get install -y python3-pip
-RUN apt-get install build-essential libssl-dev libffi-dev python-dev
-RUN pip install Scrapy
+WORKDIR /usr/src/app
+
+COPY requirements.txt ./
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
